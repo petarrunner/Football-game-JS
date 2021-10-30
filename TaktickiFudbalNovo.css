@@ -1,0 +1,208 @@
+body {
+    background-image: url('/teamsStadium/img_open.jpg');
+    /* background-repeat: no-repeat; */
+    background-size: cover;
+    font-size: large;
+    opacity: 0.9;
+}
+/* body {
+    background-color: #28a528;
+    font-size: large;
+} */
+
+#main-div {
+    width: 99vw;
+    height: 98vh;
+    display: flex;
+    flex-direction: row;
+}
+#glavni-div-prvi {
+    width: 55%;
+    height: 99%;
+    display: flex;
+}
+#izborISemafor {
+    width: 50%;
+    padding: 10px;
+    margin: 28px 0 0 10px;
+}
+#biranjeTimova {
+    padding: 10px;
+    margin-bottom: 10px;
+    height: 280px;
+    min-height: 300px;
+    padding-top: 0;
+    background-color: #348b34;
+    border: 5px solid rgb(30, 71, 23);
+}
+#semaforCeo {
+    display: grid;
+    grid-template:
+        'a b b j c'
+        'a d e f c'
+        'g h h h i ';
+
+    min-height: 300px;
+    border: 5px solid rgb(30, 71, 23);
+    text-align: center;
+    grid-template-columns: 1fr 40px 20px 40px 1fr;
+    grid-template-rows: 30px 30px 1fr;
+}
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////// */
+#line-ups {
+    width: 44%;
+    min-width: 350px;
+}
+.line-ups-class {
+    border: 5px solid rgb(30, 71, 23);
+    width: 80%;
+    height: 427px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-rows: 125px auto;
+}
+.line-ups-upper-class {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto 120px;
+}
+.line-ups-div-name-class p {
+    margin: 10px;
+}
+.line-ups-name-class {
+    font-weight: 700;
+}
+.logo-class {
+    height: 100%;
+    max-width: 100%;
+}
+.logo-class-img {
+    width: 100%;
+    height: 100%;
+}
+.line-ups-lower-class {
+    width: 100.5%;
+    display: flex;
+}
+.numbers-class {
+    width: 30px;
+    height: 305px;
+    padding-left: 10px;
+}
+.players-class {
+    width: 160px;
+    height: 305px;
+}
+.specials-class {
+    width: auto;
+    height: 305px;
+}
+.line-ups-lower-class {
+    border-top: 3px solid rgb(30, 71, 23);
+}
+.hiddenLineUps {
+    visibility: hidden;
+}
+.collapseLineUps {
+    display: none;
+}
+.hide__info {
+    visibility: hidden;
+}
+.visibleLineUps {
+    visibility: visible;
+}
+#imgStadium {
+    width: 100%;
+    height: 100%;
+}
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+#glavni-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: auto;
+    padding-top: 30px;
+}
+.polje-sut {
+    width: 250px;
+    height: 350px;
+    padding: 10px;
+    border: 3px solid rgb(30, 71, 23);
+    background-color: #348b34;
+    margin: 10px;
+    margin-right: 30px;
+    margin-left: 30px;
+}
+.odabranKlub {
+    width: 190px;
+    font-weight: 700;
+}
+.semaforTabelaPolja {
+    border: 2px solid rgb(30, 71, 23);
+}
+#t-a {
+    grid-area: a;
+    font-weight: 700;
+    font-size: larger;
+}
+#t-b {
+    grid-area: b;
+    border-left: none;
+    border-right: none;
+    text-align: right;
+    padding-right: 3px;
+}
+#t-j {
+    grid-area: j;
+    border-left: none;
+    border-right: none;
+    text-align: left;
+}
+#t-c {
+    grid-area: c;
+    font-weight: 700;
+    font-size: larger;
+}
+#t-d {
+    grid-area: d;
+    border-bottom: 2px solid rgb(30, 71, 23);
+    font-weight: 700;
+    text-align: right;
+}
+#t-e {
+    grid-area: e;
+    border-bottom: 2px solid rgb(30, 71, 23);
+}
+#t-f {
+    grid-area: f;
+    border-bottom: 2px solid rgb(30, 71, 23);
+    font-weight: 700;
+    text-align: left;
+}
+#t-g {
+    grid-area: g;
+    text-align: right;
+    padding-right: 10px;
+    border-top: none;
+    font-size: smaller;
+    line-height: 1.2rem;
+}
+#t-h {
+    grid-area: h;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-size: smaller;
+    line-height: 1.2rem;
+}
+#t-i {
+    grid-area: i;
+    text-align: left;
+    padding-left: 10px;
+    border-top: none;
+    font-size: smaller;
+    line-height: 1.2rem;
+}

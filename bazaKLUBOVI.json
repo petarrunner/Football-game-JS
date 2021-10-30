@@ -1,0 +1,119 @@
+{
+    "clubs": [
+        {
+            "clubName": "FC Bayern Munchen",
+            "logo": "teamsLogo/FC-Bayern-Munich-HD-Logo - Copy.png",
+            "imgStadium": "teamsStadium/bayern-munich.jpg",
+            "color1": "#DC052D",
+            "color2": "#fff",
+            "color3": "#DC052D",
+            "coach": "Hans-Dieter Flick",
+            "playerName": [
+                "Nouer",
+                "Sule",
+                "Pavard",
+                "Alaba",
+                "Davis",
+                "Kimmich",
+                "Goretzka",
+                "Muller",
+                "Coman",
+                "Sane",
+                "Gnabry",
+                "Lewandowski"
+            ]
+        },
+        {
+            "clubName": "Juventus",
+            "logo": "teamsLogo/Juventus-FC-HD-Logo - Copy.png",
+            "imgStadium": "teamsStadium/juventus.jpg",
+            "color1": "#000",
+            "color2": "#FFF",
+            "color3": "#FFF",
+            "coach": "Andrea Pirlo",
+            "playerName": [
+                "Buffon",
+                "Chielini",
+                "Bonucci",
+                "De Ligt",
+                "Alex Sandro",
+                "Cuardado",
+                "McKennie",
+                "Ramsey",
+                "Chiesa",
+                "Dybala",
+                "Morata",
+                "C. Ronaldo"
+            ]
+        },
+        {
+            "clubName": "Manchester City",
+            "logo": "teamsLogo/Manchester-City-FC-HD-Logo - Copy.png",
+            "imgStadium": "teamsStadium/manchester-city.jpg",
+            "color1": "#6CADDF",
+            "color2": "#FFF",
+            "color3": "#6CADDF",
+            "coach": "Pep Guardiola",
+            "playerName": [
+                "Ederson",
+                "Laporte",
+                "Walker",
+                "Mendy",
+                "Gundogan",
+                "Fernandinho",
+                "Mahrez",
+                "B. Silva",
+                "de Bruyne",
+                "Sterling",
+                "Jesus",
+                "Aguero"
+            ]
+        },
+        {
+            "clubName": "Real Madrid",
+            "logo": "teamsLogo/Real-Madrid-CF-HD-Logo - Copy.png",
+            "imgStadium": "teamsStadium/real-madrid.jpg",
+            "color1": "#FFF",
+            "color2": "#000",
+            "color3": "#FFF",
+            "coach": "Zinedine Zidane",
+            "playerName": [
+                "Courtois",
+                "S. Ramos",
+                "Varane",
+                "Marcelo",
+                "Kroos",
+                "Modric",
+                "Casemiro",
+                "Isco",
+                "Hazard",
+                "Asensio",
+                "Vinicius Jr.",
+                "Benzema"
+            ]
+        },
+        {
+            "clubName": "Borussia Dortmund",
+            "logo": "teamsLogo/Borussia-Dortmund-HD-Logo.png",
+            "imgStadium": "teamsStadium/borussia-dortmund.jpg",
+            "color1": "#FDE100",
+            "color2": "#000",
+            "color3": "#FDE100",
+            "coach": "Edin Terzic",
+            "playerName": [
+                "Burki",
+                "Hummels",
+                "Emre Can",
+                "Meunier",
+                "Witsel",
+                "Bellingham",
+                "Brandt",
+                "G. Reyna",
+                "T. Hazard",
+                "J. Sancho",
+                "M. Reus",
+                "Haaland"
+            ]
+        }
+    ]
+}
