@@ -1,7 +1,7 @@
 import { teamsList, playersList } from '../0__teamsBase.js';
 
 export default class TeamsView {
-    inde;
+    index;
     clubName;
     activeLineUp = [];
     allPlayers = [];

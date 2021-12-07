@@ -1,12 +1,9 @@
-import { teamsList } from '../0__teamsBase.js';
 import { TIME_CHANGE } from '../config.js';
+import { domacin, gost, info } from '../controller.js';
 import * as fields from '../fields.js';
-import { info } from '../controller.js';
-import { domacin, gost } from '../controller.js';
 
 export default class SemaforCl {
     constructor() {}
-
     time = 0;
     score__home = 0;
     score__away = 0;
