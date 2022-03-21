@@ -1,13 +1,13 @@
-import DriblingAndDefending from './DriblindAndDefending.js';
-import { domacin, gost } from '../controller.js';
-import { teamsList, playersList } from '../0__teamsBase.js';
+import { playersList } from '../0__teamsBase.js';
 import { semafor } from '../controller.js';
+import DriblingAndDefending from './DriblindAndDefending.js';
 
 export default class Dribling extends DriblingAndDefending {
     text;
+
     constructor() {
         super();
-        this.parentEl = document.querySelector('#dribling');
+        this.parentEl = document.querySelector('#field-dribling');
         this.selectPlayers = this.parentEl.querySelector('.activePlayer');
         this.actionText = this.parentEl.querySelector('.finalActionText');
     }
@@ -37,19 +37,20 @@ export default class Dribling extends DriblingAndDefending {
         } else if (this.result <= -8) {
             text = `Faul!`;
         }
-        document.querySelector('#kraj-akcije-dribling').innerText = text;
+        document.querySelector('#text-finalAction-dribling').innerText = text;
     }
     writeInConsoleLog() {
         console.log(`Action => Dribling`);
         console.log(`${this.activePlayer} : ${this.rating__ATT} + ${this.dice__ATT} = ${this.rating__ATT + this.dice__ATT}`);
         console.log(`${this.secondTeamPlayer} : ${this.rating__GK} + ${this.dice__GK} = ${this.rating__GK + this.dice__GK}`);
-        console.log('Result: ', this.result, '=>', document.querySelector('#kraj-akcije-dribling').innerText);
+        console.log('Result: ', this.result, '=>', document.querySelector('#text-finalAction-dribling').innerText);
         console.log('-----------------------------------');
     }
 
     firstAction() {
         this.getIndexActivePlayer();
         this.getSecondTeamPlayers();
+        this.setSecondPlayerSelected();
     }
     finalAction() {
         this.getIndexActivePlayer();
@@ -61,5 +62,6 @@ export default class Dribling extends DriblingAndDefending {
         this.writeInConsoleLog();
         this.clearDefenders();
         semafor.timeChangesAndHTFT();
+        this.setSecondPlayerSelectedFalse();
     }
 }

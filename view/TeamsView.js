@@ -1,4 +1,5 @@
 import { teamsList, playersList } from '../0__teamsBase.js';
+import { semafor } from '../controller.js';
 
 export default class TeamsView {
     index;
@@ -6,7 +7,8 @@ export default class TeamsView {
     activeLineUp = [];
     allPlayers = [];
     imgLogo;
-
+    firstTeamCompleted = false;
+    secondTeamCompleted = false;
     writeClubName() {
         this.parentEl.querySelector('.line-ups-name-class').innerText = this.clubName;
     }
@@ -25,66 +27,97 @@ export default class TeamsView {
         this.parentEl.style.color = teamsList[this.index].color2;
         this.imgLogo.style.backgroundColor = teamsList[this.index].color3;
     }
-    addPlayersToSelectLineUps() {
-        let [gk, ...igraci] = [...teamsList[this.index].playerName];
-
-        for (let [index, ime] of igraci.entries()) {
-            document.querySelector('#playerNameNo1').appendChild(document.createElement('option')).innerText =
-                document.querySelector('#playerNameNo2').appendChild(document.createElement('option')).innerText =
-                document.querySelector('#playerNameNo3').appendChild(document.createElement('option')).innerText =
-                document.querySelector('#playerNameNo4').appendChild(document.createElement('option')).innerText =
-                document.querySelector('#playerNameNo5').appendChild(document.createElement('option')).innerText =
-                document.querySelector('#playerNameNo6').appendChild(document.createElement('option')).innerText =
-                    ime;
+    sortDefenders(a, b) {
+        if (a.defending > b.defending) {
+            return -1;
         }
-        document.querySelector('#playerNameNo1').getElementsByTagName('option')[0].selected =
-            document.querySelector('#playerNameNo2').getElementsByTagName('option')[4].selected =
-            document.querySelector('#playerNameNo3').getElementsByTagName('option')[5].selected =
-            document.querySelector('#playerNameNo4').getElementsByTagName('option')[6].selected =
-            document.querySelector('#playerNameNo5').getElementsByTagName('option')[8].selected =
-            document.querySelector('#playerNameNo6').getElementsByTagName('option')[10].selected =
-                'selected';
+        if (a.defending < b.defending) {
+            return 1;
+        }
+        return 0;
     }
-    addPlayersToSelectLineUpsAWAY() {
-        let [gk, ...igraci] = [...teamsList[this.index].playerName];
-
-        for (let [index, ime] of igraci.entries()) {
-            document.querySelector('#playerNameNo1-a').appendChild(document.createElement('option')).innerText =
-                document.querySelector('#playerNameNo2-a').appendChild(document.createElement('option')).innerText =
-                document.querySelector('#playerNameNo3-a').appendChild(document.createElement('option')).innerText =
-                document.querySelector('#playerNameNo4-a').appendChild(document.createElement('option')).innerText =
-                document.querySelector('#playerNameNo5-a').appendChild(document.createElement('option')).innerText =
-                document.querySelector('#playerNameNo6-a').appendChild(document.createElement('option')).innerText =
-                    ime;
+    sortMidlfielders(a, b) {
+        if (a.dribling > b.dribling) {
+            return -1;
         }
-        document.querySelector('#playerNameNo1-a').getElementsByTagName('option')[0].selected =
-            document.querySelector('#playerNameNo2-a').getElementsByTagName('option')[4].selected =
-            document.querySelector('#playerNameNo3-a').getElementsByTagName('option')[5].selected =
-            document.querySelector('#playerNameNo4-a').getElementsByTagName('option')[6].selected =
-            document.querySelector('#playerNameNo5-a').getElementsByTagName('option')[8].selected =
-            document.querySelector('#playerNameNo6-a').getElementsByTagName('option')[10].selected =
-                'selected';
+        if (a.dribling < b.dribling) {
+            return 1;
+        }
+        return 0;
+    }
+    sortAttackers(a, b) {
+        if (a.shooting > b.shooting) {
+            return -1;
+        }
+        if (a.shooting < b.shooting) {
+            return 1;
+        }
+        return 0;
+    }
+    addPlayersToSelectLineUps() {
+        let addedText = '';
+        if (this.parentEl == document.querySelector('#line-ups-away')) {
+            addedText = '-a';
+        }
+        let defenders = playersList[this.index]
+            .filter(n => n.position === 'defender')
+            .sort(this.sortDefenders)
+            .map(m => m.playerName);
+
+        defenders.forEach(function (player) {
+            document.querySelector(`#playerNameNo1${addedText}`).appendChild(document.createElement('option')).innerText = document
+                .querySelector(`#playerNameNo2${addedText}`)
+                .appendChild(document.createElement('option')).innerText = player;
+        });
+
+        document.querySelector(`#playerNameNo2${addedText}`).getElementsByTagName('option')[1].selected = 'selected';
+
+        let midlfielders = playersList[this.index]
+            .filter(n => n.position == 'midfielder')
+            .sort(this.sortMidlfielders)
+            .map(m => m.playerName);
+
+        midlfielders.forEach(function (player) {
+            document.querySelector(`#playerNameNo3${addedText}`).appendChild(document.createElement('option')).innerText =
+                document.querySelector(`#playerNameNo4${addedText}`).appendChild(document.createElement('option')).innerText =
+                document.querySelector(`#playerNameNo5${addedText}`).appendChild(document.createElement('option')).innerText =
+                    player;
+        });
+        document.querySelector(`#playerNameNo3${addedText}`).getElementsByTagName('option')[2].selected = 'selected';
+        document.querySelector(`#playerNameNo4${addedText}`).getElementsByTagName('option')[1].selected = 'selected';
+
+        let attackers = playersList[this.index]
+            .filter(n => n.position == 'forward')
+            .sort(this.sortAttackers)
+            .map(m => m.playerName);
+
+        attackers.forEach(function (player) {
+            document.querySelector(`#playerNameNo5${addedText}`).appendChild(document.createElement('option')).innerText = document
+                .querySelector(`#playerNameNo6${addedText}`)
+                .appendChild(document.createElement('option')).innerText = player;
+        });
     }
     changeLowerField() {
         this.activeLineUp.push(playersList[this.index][0].playerName);
+
         for (let m = 1; m <= 6; m++) {
             let name = document.querySelector('#playerNameNo' + [m]).value;
             const h = teamsList[this.index].playerName.indexOf(name);
             this.activeLineUp.push(name);
             document.querySelector('#playerNo' + [m]).innerText = playersList[this.index][h].kitNumber;
-            document.querySelector('#playerNo' + [m]).classList.remove('hiddenLineUps');
+            document.querySelector('#playerNo' + [m]).classList.remove('visibilityToHidden');
             document.querySelector('#playerSpecNo' + [m]).innerText = playersList[this.index][h].specials;
             if (playersList[this.index][h].specials != '/') {
-                document.querySelector('#playerSpecNo' + [m]).classList.remove('hiddenLineUps');
+                document.querySelector('#playerSpecNo' + [m]).classList.remove('visibilityToHidden');
             }
             document.querySelector('#playerNamePNo' + [m]).classList.add('visibleLineUps');
             document.querySelector('#playerNamePNo' + [m]).innerText = playersList[this.index][h].playerName;
         }
 
         document.querySelector('#form-home').remove();
-        document.querySelector('#playerNo').classList.remove('hiddenLineUps');
+        document.querySelector('#playerNo').classList.remove('visibilityToHidden');
         document.querySelector('#playerNamePNo').innerText = playersList[this.index][0].playerName;
-        document.querySelector('#playerNamePNo').classList.remove('hiddenLineUps');
+        document.querySelector('#playerNamePNo').classList.remove('visibilityToHidden');
     }
     changeLowerFieldAWAY() {
         this.activeLineUp.push(playersList[this.index][0].playerName);
@@ -93,19 +126,43 @@ export default class TeamsView {
             const h = teamsList[this.index].playerName.indexOf(name);
             this.activeLineUp.push(name);
             document.querySelector('#playerNo' + [m] + '-a').innerText = playersList[this.index][h].kitNumber;
-            document.querySelector('#playerNo' + [m] + '-a').classList.remove('hiddenLineUps');
+            document.querySelector('#playerNo' + [m] + '-a').classList.remove('visibilityToHidden');
             document.querySelector('#playerSpecNo' + [m] + '-a').innerText = playersList[this.index][h].specials;
             if (playersList[this.index][h].specials != '/') {
-                document.querySelector('#playerSpecNo' + [m] + '-a').classList.remove('hiddenLineUps');
+                document.querySelector('#playerSpecNo' + [m] + '-a').classList.remove('visibilityToHidden');
             }
             document.querySelector('#playerNamePNo' + [m] + '-a').classList.add('visibleLineUps');
             document.querySelector('#playerNamePNo' + [m] + '-a').innerText = playersList[this.index][h].playerName;
         }
 
         document.querySelector('#form-away').remove();
-        document.querySelector('#playerNo-a').classList.remove('hiddenLineUps');
+        document.querySelector('#playerNo-a').classList.remove('visibilityToHidden');
         document.querySelector('#playerNamePNo-a').innerText = playersList[this.index][0].playerName;
-        document.querySelector('#playerNamePNo-a').classList.remove('hiddenLineUps');
+        document.querySelector('#playerNamePNo-a').classList.remove('visibilityToHidden');
+    }
+    checkStartingLineups() {
+        let addedText = '';
+        let secondList = [];
+
+        if (this.parentEl == document.querySelector('#line-ups-away')) {
+            addedText = '-a';
+        }
+
+        for (let i = 1; i < 7; i++) {
+            let name = document.querySelector(`#playerNameNo${i}${addedText}`).value;
+
+            if (!secondList.includes(name)) {
+                secondList.push(name);
+            }
+        }
+
+        if (secondList.length == 6 && addedText == '') {
+            this.firstTeamCompleted = true;
+        }
+
+        if (secondList.length == 6 && addedText == '-a') {
+            this.secondTeamCompleted = true;
+        }
     }
 
     firstAction() {
@@ -115,8 +172,7 @@ export default class TeamsView {
         this.writeAllPlayers();
         this.changeClubLogo();
         this.changeBackgroudColor();
-
-        this.parentEl == document.querySelector('#line-ups-home') ? this.addPlayersToSelectLineUps() : this.addPlayersToSelectLineUpsAWAY();
+        this.addPlayersToSelectLineUps();
     }
     finalAction() {
         this.parentEl == document.querySelector('#line-ups-home') ? this.changeLowerField() : this.changeLowerFieldAWAY();

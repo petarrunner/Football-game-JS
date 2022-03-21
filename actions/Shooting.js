@@ -1,8 +1,6 @@
-import { semafor, domacin, gost, info } from '../controller.js';
+import { playersList, teamsList } from '../0__teamsBase.js';
+import { domacin, gost, info, semafor } from '../controller.js';
 import Actions from './Actions.js';
-import { field__Time } from '../fields.js';
-
-import { teamsList, playersList } from '../0__teamsBase.js';
 
 export default class Shooting extends Actions {
     constructor() {
@@ -22,12 +20,13 @@ export default class Shooting extends Actions {
     index__teamGK;
 
     writeClubName() {
-        document.querySelector('#imeKlubaDomacin').innerText = info.clubName__home;
-        document.querySelector('#imeKlubaDomacin2').innerText = info.clubName__away;
+        document.querySelector('#field-shooting-home').querySelector('.fieldType').innerText = info.clubName__home;
+        document.querySelector('#field-shooting-away').querySelector('.fieldType').innerText = info.clubName__away;
     }
+
     getActivePlayers() {
         let activeTeam;
-        this.parentEl === document.querySelector('#sutNaGol') ? (activeTeam = domacin.activeLineUp) : (activeTeam = gost.activeLineUp);
+        this.parentEl === document.querySelector('#field-shooting-home') ? (activeTeam = domacin.activeLineUp) : (activeTeam = gost.activeLineUp);
         for (let i = 1; i < activeTeam.length; i++) {
             this.selectPlayers.appendChild(document.createElement('option')).innerText = activeTeam[i];
         }
@@ -53,14 +52,8 @@ export default class Shooting extends Actions {
             this.noATT = 1;
             this.noGK = 2;
         }
-        // console.log(domacin.index);
-        // console.log(gost.index);
-        // console.log(this.index__teamATT);
-        // console.log(this.index__teamGK);
 
         this.index__activePlayer = teamsList[this.index__teamATT].playerName.indexOf(this.activePlayer);
-        // console.log(this.activePlayer);
-        // console.log(this.index__activePlayer);
     }
 
     calculateAttackerRating() {
@@ -83,7 +76,7 @@ export default class Shooting extends Actions {
 
     checkResult() {
         let text;
-        if (this.result >= 1 && Number.isFinite(+field__Time.innerText) == true) {
+        if (this.result >= 1) {
             text = `Goool !!!`;
             semafor.semaforGoalScored(this.activePlayer, this.team__ATT);
         } else if (this.result > -3 && this.result <= 0) {

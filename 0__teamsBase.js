@@ -3,7 +3,13 @@ export const teamsList = [
     {
         clubName: 'FC Bayern Munchen',
         logo: 'teamsLogo/FC-Bayern-Munich-HD-Logo - Copy.png',
-        imgStadium: 'teamsStadium/bayern-munich.jpg',
+        stadium: {
+            city: 'Munchen',
+            country: 'Germany',
+            stadiumSrc: 'teamsStadium/bayern-munich.jpg',
+            stadiumName: 'Allianz Arena',
+            stadiumCapacitet: 69901,
+        },
         color1: '#DC052D',
         color2: '#fff',
         color3: '#DC052D',
@@ -14,7 +20,13 @@ export const teamsList = [
     {
         clubName: 'Juventus',
         logo: 'teamsLogo/Juventus-FC-HD-Logo - Copy.png',
-        imgStadium: 'teamsStadium/juventus.jpg',
+        stadium: {
+            city: 'Turin',
+            country: 'Italy',
+            stadiumSrc: 'teamsStadium/juventus.jpg',
+            stadiumName: 'Allianz Stadium',
+            stadiumCapacitet: 41507,
+        },
         color1: '#000',
         color2: '#FFF',
         color3: '#FFF',
@@ -38,8 +50,13 @@ export const teamsList = [
     {
         clubName: 'Manchester City',
         logo: 'teamsLogo/Manchester-City-FC-HD-Logo - Copy.png',
-        imgStadium: 'teamsStadium/manchester-city.jpg',
-
+        stadium: {
+            city: 'Manchester',
+            country: 'England',
+            stadiumSrc: 'teamsStadium/manchester-city.jpg',
+            stadiumName: 'Etihad stadium',
+            stadiumCapacitet: 55097,
+        },
         color1: '#6CADDF',
         color2: '#FFF',
         color3: '#6CADDF',
@@ -63,7 +80,13 @@ export const teamsList = [
     {
         clubName: 'Real Madrid',
         logo: 'teamsLogo/Real-Madrid-CF-HD-Logo - Copy.png',
-        imgStadium: 'teamsStadium/real-madrid.jpg',
+        stadium: {
+            city: 'Madrid',
+            country: 'Spain',
+            stadiumSrc: 'teamsStadium/real-madrid.jpg',
+            stadiumName: 'Santiago Bernabeu',
+            stadiumCapacitet: 81044,
+        },
         color1: '#FFF',
         color2: '#000',
         color3: '#FFF',
@@ -87,7 +110,13 @@ export const teamsList = [
     {
         clubName: 'Borussia Dortmund',
         logo: 'teamsLogo/Borussia-Dortmund-HD-Logo.png',
-        imgStadium: 'teamsStadium/borussia-dortmund.jpg',
+        stadium: {
+            city: 'Dortmund',
+            country: 'Germany',
+            stadiumSrc: 'teamsStadium/borussia-dortmund.jpg',
+            stadiumName: 'Westfalenstadion',
+            stadiumCapacitet: 81365,
+        },
         color1: '#FDE100',
         color2: '#000',
         color3: '#FDE100',
@@ -112,6 +141,13 @@ export const teamsList = [
         clubName: '',
         logo: 'teamsLogo/.png',
         imgStadium: 'teamsStadium/.jpg',
+        stadium: {
+            city: '',
+            country: '',
+            stadiumSrc: 'teamsStadium/.jpg',
+            stadiumName: '',
+            stadiumCapacitet: 0,
+        },
         color1: '#',
         color2: '#',
         color3: '#',
@@ -834,8 +870,9 @@ export const playersList = [
             freekicks: 17,
             corner: 16,
         },
+
         {
-            playerName: 'Halland',
+            playerName: 'Haaland',
             position: 'forward',
             specials: 'R S',
             kitNumber: 9,

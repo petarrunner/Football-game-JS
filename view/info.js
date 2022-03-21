@@ -1,5 +1,4 @@
 import { teamsList } from '../0__teamsBase.js';
-import { domacin } from '../controller.js';
 
 export default class Info {
     clubName__home;
@@ -23,10 +22,12 @@ export default class Info {
         document.querySelector('#teamsHome').getElementsByTagName('option')[rndNum1].selected = 'selected';
         document.querySelector('#teamsAway').getElementsByTagName('option')[rndNum2].selected = 'selected';
     }
+
     getClubNames() {
         this.clubName__home = document.querySelector('#teamsHome').value;
         this.clubName__away = document.querySelector('#teamsAway').value;
     }
+
     getIndexes() {
         this.index__home = teamsList.findIndex(function (teamsList) {
             return teamsList.clubName === document.querySelector('#teamsHome').value;
@@ -36,9 +37,14 @@ export default class Info {
         });
     }
 
+    hideInfoField() {
+        document.querySelector('.chooseTeamsContainer').classList.add('displayToNone');
+    }
+
     firstAction() {
         this.setTeamsToChose();
     }
+
     finalAction() {
         this.getClubNames();
         this.getIndexes();

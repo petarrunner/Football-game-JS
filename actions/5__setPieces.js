@@ -1,27 +1,27 @@
-import DriblingAndDefending from './DriblindAndDefending.js';
+import { playersList, teamsList } from '../0__teamsBase.js';
 import { domacin, gost, semafor } from '../controller.js';
-import { teamsList, playersList } from '../0__teamsBase.js';
-import { field__Time } from '../fields.js';
+import DriblingAndDefending from './DriblindAndDefending.js';
 
 export default class SetPieces extends DriblingAndDefending {
-    prekid__domacin = document.querySelector('#prekid-ime-domacin');
-    prekid__gost = document.querySelector('#prekid-ime-gost');
+    setPiece__homeTeam = document.querySelector('#setPiece-homeTeam');
+    setPiece__awayTeam = document.querySelector('#setPiece-awayTeam');
     rez1;
     rez2;
     constructor() {
         super();
         this.parentEl = document.querySelector('#setPiece');
         this.selectPlayers = this.parentEl.querySelector('.activePlayer');
-        // this.activeLineUp = domacin.activeLineUp;
-        this.prekid__domacin.label = domacin.clubName;
-        this.prekid__gost.label = gost.clubName;
+        this.setPiece__homeTeam.label = domacin.clubName;
+        this.setPiece__awayTeam.label = gost.clubName;
     }
     getActivePlayers() {
-        this.prekid__domacin.label = domacin.clubName;
-        this.prekid__gost.label = gost.clubName;
+        this.setPiece__homeTeam.label = domacin.clubName;
+        this.setPiece__awayTeam.label = gost.clubName;
         for (let i = 1; i < domacin.activeLineUp.length; i++) {
-            this.prekid__domacin.appendChild(document.createElement('option')).innerText = domacin.activeLineUp[i];
-            this.prekid__gost.appendChild(document.createElement('option')).innerText = gost.activeLineUp[i];
+            this.setPiece__homeTeam.appendChild(document.createElement('option')).innerText = domacin.activeLineUp[i];
+        }
+        for (let i = 1; i < gost.activeLineUp.length; i++) {
+            this.setPiece__awayTeam.appendChild(document.createElement('option')).innerText = gost.activeLineUp[i];
         }
 
         if (this.parentEl == document.querySelector('#setPiece')) {
@@ -29,8 +29,8 @@ export default class SetPieces extends DriblingAndDefending {
         }
     }
     clearActivePlayers() {
-        let clear1 = this.prekid__domacin.getElementsByTagName('option');
-        let clear2 = this.prekid__gost.getElementsByTagName('option');
+        let clear1 = this.setPiece - homeTeam.getElementsByTagName('option');
+        let clear2 = this.setPiece - awayTeam.getElementsByTagName('option');
         console.log(clear1);
         console.log(clear1.length);
         while (clear1.length > 0) {
@@ -67,15 +67,17 @@ export default class SetPieces extends DriblingAndDefending {
             this.index__teamGK = domacin.index;
         }
     }
-
     checkBox() {
         this.dice__ATT = Math.floor(Math.random() * 9 + 1);
         this.dice__GK = Math.floor(Math.random() * 7 + 3);
-        if (document.querySelector('#prekid1') == true) {
+        if (document.querySelector('#setPiece1') == true) {
             this.dice__ATT = Math.floor(Math.random() * 8 + 2);
             this.dice__GK = Math.floor(Math.random() * 8 + 2);
         }
-        if (document.querySelector('#prekid2').checked == true) {
+    }
+    /////// B  U  G //////////
+    checkBoxPenalty() {
+        if (document.querySelector('#setPiece2').checked == true) {
             this.dice__ATT = Math.floor(Math.random() * 10 + 5);
             this.dice__GK = Math.floor(Math.random() * 15 + 1);
             this.rez1 =
@@ -85,21 +87,20 @@ export default class SetPieces extends DriblingAndDefending {
                 ) + this.dice__ATT;
         }
     }
-
     calculateAttackerRating() {
         this.rez1 = Math.floor(
             (2 * playersList[this.index__teamATT][this.index__activePlayer].freekicks +
                 playersList[this.index__teamATT][this.index__activePlayer].shooting) /
                 3
         );
-
+        this.checkBoxPenalty();
         this.rez2 = playersList[this.index__teamGK][0].ratingGk;
         this.result = this.rez1 + this.dice__ATT - this.rez2 - this.dice__GK;
     }
     checkResult() {
         let text;
 
-        if (this.result >= 1 && Number.isFinite(+field__Time.innerText) == true) {
+        if (this.result >= 1 && semafor.isPlaying) {
             text = `Goool !!!`;
             semafor.semaforGoalScored(this.activePlayer, this.team__ATT);
         } else if (this.result > -3 && this.result <= 0) {
@@ -109,10 +110,9 @@ export default class SetPieces extends DriblingAndDefending {
         } else if (this.result <= -6) {
             text = `Great save!`;
         }
-        document.querySelector('#kraj-akcije-prekid').innerText = text;
+        document.querySelector('#text-finalAction-setPiece').innerText = text;
         semafor.timeChangesAndHTFT();
     }
-
     clearActivePlayers() {
         let clear1 = this.parentEl.getElementsByTagName('option');
         while (clear1.length > 0) {

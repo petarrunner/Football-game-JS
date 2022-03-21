@@ -1,0 +1,13 @@
+.fieldAction {
+    min-width: 230px;
+    min-height: 370px;
+    height: 45%;
+    padding: 10px;
+    border: 5px solid rgb(30, 71, 23);
+    background-color: #348b34;
+    border-radius: 20px;
+}
+.fieldType {
+    width: 190px;
+    font-weight: 700;
+}

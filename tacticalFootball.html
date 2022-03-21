@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tactical Football</title>
+        <link rel="stylesheet" href="tacticalFootball.css" />
+
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet" />
+        <script type="module" src="controller.js"></script>
+    </head>
+    <body>
+        <div class="main-div">
+            <div class="main-div-firstHalf">
+                <div class="containerTogether">
+                    <div class="containersInfo chooseTeamsContainer">
+                        <h1>Tactical Football</h1>
+                        <form id="form__info1" action="">
+                            <label for="teamsHome">Home team:</label><br />
+                            <select name="" id="teamsHome"></select
+                            ><br />
+                        </form>
+                        <form id="form__info2" action="">
+                            <label for="teamsAway">Away team:</label><br />
+                            <select name="" id="teamsAway"></select
+                            ><br />
+                        </form>
+                        <br />
+                        <button id="buttonLineUps">Select line-ups</button><br /><br />
+                        <button id="buttonConfirmClubs">Confirm clubs</button>
+                    </div>
+
+                    <div class="containersInfo stadiumContainer displayToNone">
+                        <div class="stadiumUpperPart">
+                            <p class="attendance">Attendance:</p>
+                            <p class="stadiumName">Stadium:</p>
+                            <div class="weatherAndTime">
+                                <p class="weather">Weather:</p>
+                                <p class="time">Time: 20:00</p>
+                            </div>
+                        </div>
+                        <div class="stadiumDiv">
+                            <img class="stadiumPhoto" src="teamsStadium/juventus.jpg" alt="stadium_photo" />
+                        </div>
+                    </div>
+
+                    <div class="containersInfo scoreboardContainer">
+                        <div id="t-a" class="boreder2px scoreboardNames">Home Team</div>
+                        <div id="t-b" class="boreder2px">0'</div>
+                        <div id="t-c" class="boreder2px scoreboardNames">Away Team</div>
+                        <div id="t-d">0 : 0</div>
+                        <div id="t-e" class="boreder2px scoreboardScorerFields"></div>
+                        <div id="t-f" class="boreder2px"></div>
+                        <div id="t-g" class="boreder2px scoreboardScorerFields"></div>
+                    </div>
+                </div>
+                <div class="line-ups">
+                    <div id="line-ups-home" class="line-ups-class">
+                        <div class="line-ups-upper-class">
+                            <div class="line-ups-div-name-class">
+                                <p class="line-ups-name-class">Home team</p>
+                                <p class="line-ups-coach-class">Coach</p>
+                            </div>
+                            <div>
+                                <img class="logo-class-img" src="teamsLogo/CLball.png" alt="logo" />
+                            </div>
+                        </div>
+                        <div class="line-ups-lower-class">
+                            <div class="numbers-class">
+                                <form action="">
+                                    <p class="visibilityToHidden" id="playerNo">1</p>
+                                    <p class="visibilityToHidden" id="playerNo1">D</p>
+                                    <p class="visibilityToHidden" id="playerNo2">D</p>
+                                    <p class="visibilityToHidden" id="playerNo3">M</p>
+                                    <p class="visibilityToHidden" id="playerNo4">M</p>
+                                    <p class="visibilityToHidden" id="playerNo5">M/F</p>
+                                    <p class="visibilityToHidden" id="playerNo6">F</p>
+                                </form>
+                            </div>
+                            <div class="players-class">
+                                <form class="form-class" id="form-home" action="">
+                                    <p>Select line-ups</p>
+                                    <label for="playerNameNo1">Defenders:</label><br />
+                                    <select name="" id="playerNameNo1"></select>
+                                    <label for="playerNameNo2"></label><br />
+                                    <select name="" id="playerNameNo2"></select>
+                                    <br />
+                                    <br />
+                                    <label for="playerNameNo3"> Midfielders:</label>
+                                    <br />
+                                    <select name="" id="playerNameNo3"></select>
+                                    <label for="playerNameNo4"></label><br />
+                                    <select name="" id="playerNameNo4"></select>
+                                    <br />
+                                    <br />
+                                    <label for="playerNameNo5"></label>Attackers<br />
+                                    <select name="" id="playerNameNo5"></select>
+                                    <label for="playerNameNo6"></label><br />
+
+                                    <select name="" id="playerNameNo6"></select>
+                                </form>
+                                <p class="visibilityToHidden" id="playerNamePNo">GK</p>
+                                <p class="visibilityToHidden" id="playerNamePNo1">A</p>
+                                <p class="visibilityToHidden" id="playerNamePNo2">A</p>
+                                <p class="visibilityToHidden" id="playerNamePNo3">A</p>
+                                <p class="visibilityToHidden" id="playerNamePNo4">A</p>
+                                <p class="visibilityToHidden" id="playerNamePNo5">A</p>
+                                <p class="visibilityToHidden" id="playerNamePNo6">A</p>
+                            </div>
+                            <div class="specials-class" id="specials-home">
+                                <p class="visibilityToHidden" id="playerSpecNo">A</p>
+                                <p class="visibilityToHidden" id="playerSpecNo1">A</p>
+                                <p class="visibilityToHidden" id="playerSpecNo2">A</p>
+                                <p class="visibilityToHidden" id="playerSpecNo3">A</p>
+                                <p class="visibilityToHidden" id="playerSpecNo4">A</p>
+                                <p class="visibilityToHidden" id="playerSpecNo5">A</p>
+                                <p class="visibilityToHidden" id="playerSpecNo6">A</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- --------------- DONJI --------------- -->
+                    <div id="line-ups-away" class="line-ups-class">
+                        <div class="line-ups-upper-class">
+                            <div class="line-ups-div-name-class">
+                                <p class="line-ups-name-class">Away team</p>
+                                <p class="line-ups-coach-class">Coach</p>
+                            </div>
+                            <div class="logo-class">
+                                <img class="logo-class-img" src="teamsLogo/CLball.png" alt="logo" />
+                            </div>
+                        </div>
+                        <div class="line-ups-lower-class">
+                            <div class="numbers-class">
+                                <form action="">
+                                    <p class="visibilityToHidden" id="playerNo-a">1</p>
+                                    <p class="visibilityToHidden" id="playerNo1-a">0</p>
+                                    <p class="visibilityToHidden" id="playerNo2-a">0</p>
+                                    <p class="visibilityToHidden" id="playerNo3-a">0</p>
+                                    <p class="visibilityToHidden" id="playerNo4-a">0</p>
+                                    <p class="visibilityToHidden" id="playerNo5-a">0</p>
+                                    <p class="visibilityToHidden" id="playerNo6-a">0</p>
+                                </form>
+                            </div>
+                            <div class="players-class">
+                                <form class="form-class" id="form-away" action="">
+                                    <p>Select line-ups</p>
+                                    <label for="playerNameNo1-a">Defenders:</label><br />
+                                    <!-- <br /> -->
+                                    <select name="" id="playerNameNo1-a"></select>
+                                    <label for="playerNameNo2-a"></label><br />
+                                    <select name="" id="playerNameNo2-a"></select>
+                                    <br />
+                                    <br />
+                                    <label for="playerNameNo3-a">Midfielders:</label><br />
+                                    <!-- <br /> -->
+                                    <select name="" id="playerNameNo3-a"></select>
+                                    <label for="playerNameNo4-a"></label><br />
+                                    <!-- <br /> -->
+                                    <select name="" id="playerNameNo4-a"></select>
+                                    <br />
+                                    <br />
+                                    <label for="playerNameNo5-a">Attackers:</label><br />
+                                    <!-- <br /> -->
+                                    <select name="" id="playerNameNo5-a"></select>
+                                    <label for="playerNameNo6-a"></label><br />
+                                    <select name="" id="playerNameNo6-a"></select>
+                                </form>
+                                <p class="visibilityToHidden" id="playerNamePNo-a">GK</p>
+                                <p class="visibilityToHidden" id="playerNamePNo1-a">A</p>
+                                <p class="visibilityToHidden" id="playerNamePNo2-a">A</p>
+                                <p class="visibilityToHidden" id="playerNamePNo3-a">A</p>
+                                <p class="visibilityToHidden" id="playerNamePNo4-a">A</p>
+                                <p class="visibilityToHidden" id="playerNamePNo5-a">A</p>
+                                <p class="visibilityToHidden" id="playerNamePNo6-a">A</p>
+                            </div>
+                            <div class="specials-class" id="specials-away">
+                                <p class="visibilityToHidden" id="playerSpecNo-a">A</p>
+                                <p class="visibilityToHidden" id="playerSpecNo1-a">A</p>
+                                <p class="visibilityToHidden" id="playerSpecNo2-a">A</p>
+                                <p class="visibilityToHidden" id="playerSpecNo3-a">A</p>
+                                <p class="visibilityToHidden" id="playerSpecNo4-a">A</p>
+                                <p class="visibilityToHidden" id="playerSpecNo5-a">A</p>
+                                <p class="visibilityToHidden" id="playerSpecNo6-a">A</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-div-secondHalf">
+                <!-- SUT NA GOL DOMACIN -->
+                <div id="field-shooting-home" class="fieldAction">
+                    <p class="fieldType">Home team</p>
+                    <form action="">
+                        <label for="shooting-name-attacker">Player in action: </label>
+                    </form>
+                    <select class="activePlayer" name="shooting-name-attacker" id="shooting-name-attacker"></select>
+                    <br /><br />
+                    <form action="">
+                        <input type="checkbox" id="checkboxShooting1" name="checkboxShooting1" value="on" />
+                        <label for="checkboxShooting1">Close range</label><br />
+                        <input type="checkbox" id="checkboxShooting2" name="checkboxShooting2" value="on" />
+                        <label for="checkboxShooting2">Open shot</label>
+                    </form>
+                    <br />
+                    <button class="finalButton" id="btn__shooting">Shot on goal!</button><br />
+                    <p class="finalActionText" id="text-finalAction-sut">Action:</p>
+                </div>
+
+                <!-- SUT NA GOL GOST 2 -->
+                <div id="field-shooting-away" class="fieldAction">
+                    <p class="fieldType">Away team</p>
+                    <form action="">
+                        <label for="shooting-name-attacker2">Player in action: </label>
+                    </form>
+                    <select class="activePlayer" name="shooting-name-attacker2" id="shooting-name-attacker2"></select>
+                    <br /><br />
+                    <form action="">
+                        <input type="checkbox" id="checkboxShooting12" name="checkboxShooting12" value="on" />
+                        <label for="checkboxShooting12">Close range</label><br />
+                        <input type="checkbox" id="checkboxShooting22" name="checkboxShooting22" value="on" />
+                        <label for="checkboxShooting22">Open shot</label>
+                    </form>
+                    <br />
+                    <button class="finalButton" id="btn__shooting2">Shot on goal!</button><br />
+                    <p class="finalActionText" id="text-finalAction-sut2">Action:</p>
+                </div>
+
+                <!-- ODUIZIMANJE -->
+                <div id="field-defending" class="fieldAction">
+                    <p class="fieldType">Defending</p>
+                    <form action="">
+                        <select class="activePlayer" name="sdf2">
+                            <optgroup class="activePlayer__home" label="Home team" id="defendingHomeTeam"></optgroup>
+                            <optgroup class="activePlayer__away" label="Away team" id="defendingAwayTeam"></optgroup>
+                        </select>
+                    </form>
+                    <button id="btn__defending1">Tackle</button>
+                    <br />
+                    <br />
+                    <form action="">
+                        <label for="odizimanje-igrac-lopta">Player with ball:</label><br />
+
+                        <select class="secondTeamPlayers" name="odizimanje-igrac-lopta" id="odizimanje-igrac-lopta"></select>
+                    </form>
+                    <br />
+                    <form action="">
+                        <input type="checkbox" id="defence1" name="defence1" value="on" />
+                        <label for="defence1">Two defenders</label><br />
+                        <input type="checkbox" id="defence2" name="defence2" value="on" />
+                        <label for="defence2">Last player</label><br />
+                        <input type="checkbox" id="defence3" name="defence3" value="on" />
+                        <label for="defence3">Danger zone</label><br />
+                    </form>
+                    <br />
+                    <button class="finalButton" id="btn__defending2">Defending!</button>
+                    <p class="finalActionText" id="text-finalAction-odbrana">Action:</p>
+                </div>
+
+                <!-- DRIBLING -->
+                <div id="field-dribling" class="fieldAction">
+                    <p class="fieldType">Dribling</p>
+                    <form action="">
+                        <select class="activePlayer" name="sdf2" id="dribling-attackerName">
+                            <optgroup label="Home team" id="optgroup-driblingHome"></optgroup>
+                            <optgroup label="Away team" id="optgroup-driblingAway"></optgroup>
+                        </select>
+                    </form>
+                    <button id="btn__dribling1">Try to drible</button>
+                    <br />
+                    <br />
+
+                    <form action="">
+                        <label for="dribling-defenderName">Defender:</label><br />
+                        <select class="secondTeamPlayers" name="dribling-defenderName" id="dribling-defenderName"></select>
+                    </form>
+                    <br />
+
+                    <button class="finalButton" id="btn__dribling2">Dribling!!</button>
+                    <p class="finalActionText" id="text-finalAction-dribling">Action:</p>
+                </div>
+
+                <!-- PREKID -->
+                <div id="setPiece" class="fieldAction">
+                    <p class="fieldType">Set Pieces</p>
+                    <form action="">
+                        <select class="activePlayer" name="" id="shooting-name-freekick">
+                            <optgroup label="Home team" id="setPiece-homeTeam"></optgroup>
+                            <optgroup label="Away team" id="setPiece-awayTeam"></optgroup>
+                        </select>
+                    </form>
+                    <form action="">
+                        <input type="checkbox" id="setPiece1" name="setPiece1" value="on" />
+                        <label for="setPiece1">Close range</label><br />
+                        <input type="checkbox" id="setPiece2" name="setPiece2" value="on" />
+                        <label for="setPiece2">Penalty</label>
+                        <br />
+                    </form>
+
+                    <br />
+                    <button class="finalButton" id="btn__freekick">Free kick!</button><br />
+                    <p class="finalActionText" id="text-finalAction-setPiece">Action:</p>
+                </div>
+
+                <!-- KORNER -->
+                <div id="setCorner" class="fieldAction">
+                    <p class="fieldType">Corner</p>
+                    <p>Corner taker:</p>
+                    <form action="">
+                        <select class="activePlayer" name="sdf" id="shooting-name-corner">
+                            <optgroup label="Home team" id="corner-name-home"></optgroup>
+                            <optgroup label="Away team" id="corner-name-away"></optgroup>
+                        </select>
+                    </form>
+                    <button id="btn__corner1">Take a corner!</button>
+                    <form action="">
+                        <br />
+                        <label for="corner-name1" id="labelIme1">Header:</label><br />
+                        <select class="headerTeamPlayers" name="corner-name1" id="corner-name1"></select
+                        ><br /><br />
+                        <label for="corner-name2">Defender:</label><br />
+                        <select class="secondTeamPlayers" name="corner-name2" id="corner-name2"></select>
+                    </form>
+
+                    <br />
+                    <button class="finalButton" id="btn__corner2">Head shot!</button>
+                    <p class="finalActionText">Action:</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

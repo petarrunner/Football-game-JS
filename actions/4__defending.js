@@ -1,9 +1,6 @@
+import { playersList } from '../0__teamsBase.js';
+import { corner, domacin, gost, info, semafor, setPiece, shootingAway, shootingHome } from '../controller.js';
 import DriblingAndDefending from './DriblindAndDefending.js';
-import { semafor, dribling, defending } from '../controller.js';
-import { teamsList, playersList } from '../0__teamsBase.js';
-import { info } from '../controller.js';
-import { shot1, shot2, domacin, gost, setPiece, corner } from '../controller.js';
-import Corner from './6__corner.js';
 
 export default class Defending extends DriblingAndDefending {
     karton = 0;
@@ -12,11 +9,10 @@ export default class Defending extends DriblingAndDefending {
     kartonZbir = 0;
     constructor() {
         super();
-        this.parentEl = document.querySelector('#oduzimanje');
+        this.parentEl = document.querySelector('#field-defending');
         this.selectPlayers = this.parentEl.querySelector('.activePlayer');
         this.actionText = this.parentEl.querySelector('.finalActionText');
     }
-
     calculateRatings() {
         ////////////////////////////////////
         this.dice__ATT = Math.floor(Math.random() * 9 + this.noATT);
@@ -41,7 +37,6 @@ export default class Defending extends DriblingAndDefending {
     foulAndCard() {
         this.karton = 0;
 
-        ///////////////////////////
         let kartonKockica = Math.floor(Math.random() * 5);
 
         if (playersList[this.index__teamATT][this.index__activePlayer].position == 'defender') {
@@ -55,9 +50,6 @@ export default class Defending extends DriblingAndDefending {
         }
         this.checkbox();
         this.kartonZbir = this.karton + kartonKockica;
-        // console.log('karton', this.karton);
-        // console.log('kartonKockica', kartonKockica);
-        // console.log('kartonZbir', this.kartonZbir);
     }
     yellowCard() {
         info.yellowCardList.push(this.activePlayer);
@@ -79,31 +71,21 @@ export default class Defending extends DriblingAndDefending {
         info.redCardList.push(this.activePlayer);
         this.deletePlayerFromActiveLineUps();
         this.clearActivePlayers();
-        shot1.clearActivePlayers();
-        shot2.clearActivePlayers();
+
+        shootingHome.clearActivePlayers();
+        shootingAway.clearActivePlayers();
         setPiece.clearActivePlayers();
         corner.clearActivePlayers();
-        // dribling.clearActivePlayers();
 
-        // defending.getActivePlayers();
-        // dribling.getActivePlayers();
         this.getActivePlayers();
-        // shot1.getActivePlayersAfterRedCard(domacin.activeLineUp);
-        shot1.getActivePlayers();
-        shot2.getActivePlayers();
-        // shot2.getActivePlayersAfterRedCard(gost.activeLineUp);
+        shootingHome.getActivePlayers();
+        shootingAway.getActivePlayers();
         setPiece.getActivePlayers();
         corner.getActivePlayers();
     }
     checkResult() {
-        // console.log('---before:---');
-        // console.log('YellowList:', info.yellowCardList);
-        // console.log('YellowList:', info.yellowCardList.length);
-        // console.log(info.yellowCardList.includes(this.activePlayer));
         this.foulAndCard();
         let card;
-        this.result = -10;
-        this.kartonZbir = 20;
         if (this.result >= 3) {
             this.text = `Great tackle!`;
         } else if (this.result >= 1 && this.result < 3) {
@@ -128,12 +110,6 @@ export default class Defending extends DriblingAndDefending {
                 this.textKarton = `! That's his second yellow card and red card`;
                 this.redCard();
                 semafor.writeCardSemafor(this.activePlayer, this.team__ATT, card);
-                /////////////////////
-                // console.log('---during:---');
-                // console.log('YellowList:', info.yellowCardList);
-                // console.log('YellowList:', info.yellowCardList.length);
-                // console.log('RedList:', info.redCardList);
-                // console.log('RedList:', info.redCardList.length);
             } else if (this.kartonZbir > 10) {
                 card = 'red';
                 this.textKarton = `! It's a direct red card`;
@@ -142,14 +118,7 @@ export default class Defending extends DriblingAndDefending {
             }
             this.text = `Foul${this.textKarton}! `;
         }
-        // console.log('---after:---');
-        // console.log('YellowList:', info.yellowCardList);
-        // console.log('YellowList:', info.yellowCardList.length);
-        // console.log(info.yellowCardList.includes(this.activePlayer));
-        // console.log(this.karton);
-        // console.log(this.textKarton);
         this.parentEl.querySelector('.finalActionText').innerText = this.text;
-        // console.log(this.text);
     }
     writeInConsoleLog() {
         console.log(`Action => Defending`);
@@ -159,21 +128,21 @@ export default class Defending extends DriblingAndDefending {
         // console.log('Result: ', this.result, '=>', this.text);
         console.log('-----------------------------------');
     }
-
     firstAction() {
         this.getIndexActivePlayer();
         this.getSecondTeamPlayers();
         this.getIndexActivePlayer();
+        this.setSecondPlayerSelected();
     }
     finalAction() {
         this.getIndexSecondTeamPlayer();
         this.calculateRatings();
         this.foulAndCard();
         this.checkResult();
-        this.clearDefenders();
         this.getSecondTeamPlayers();
-
         this.writeInConsoleLog();
+        this.clearDefenders();
         semafor.timeChangesAndHTFT();
+        this.setSecondPlayerSelectedFalse();
     }
 }

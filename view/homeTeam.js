@@ -1,10 +1,7 @@
-import { teamsList, playersList } from '../0__teamsBase.js';
 import { info } from '../controller.js';
-// import Info from './info.js';
-import TeamsView from './teamsView.js';
+import teamsView from './teamsView.js';
 
-export default class HomeTeam extends TeamsView {
-    // img__stadium;
+export default class HomeTeam extends teamsView {
     constructor() {
         super();
         this.parentEl = document.querySelector('#line-ups-home');

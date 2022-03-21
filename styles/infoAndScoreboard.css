@@ -1,0 +1,105 @@
+.containersInfo {
+    background-color: #348b34;
+    border: 5px solid rgb(30, 71, 23);
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+/* choose teams */
+.chooseTeamsContainer {
+    padding-left: 10px;
+    padding-bottom: 10px;
+    min-height: 250px;
+}
+.stadiumUpperPart {
+    background-color: #348b34;
+    padding: 0px 10px;
+    border-bottom: 5px solid rgb(30, 71, 23);
+}
+.weatherAndTime {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.stadiumDiv {
+    min-width: 250px;
+    min-height: 150px;
+}
+.stadiumPhoto {
+    width: 100%;
+}
+/* scoreboard */
+.scoreboardContainer {
+    display: grid;
+    grid-template:
+        'a b c'
+        'a d c'
+        'e f g';
+
+    min-height: 300px;
+    border: 5px solid rgb(30, 71, 23);
+    text-align: center;
+    grid-template-columns: 1fr 100px 1fr;
+    grid-template-rows: 30px 30px 1fr;
+    padding: 0;
+}
+.boreder2px {
+    border: 2px solid rgb(30, 71, 23);
+}
+
+.scoreboardNames {
+    font-weight: 700;
+    border-top: none;
+    font-size: larger;
+    padding-top: 10px;
+    border-bottom: 5px solid rgb(30, 71, 23);
+}
+#t-a {
+    grid-area: a;
+    border-radius: 10% 0 0 0;
+    border-left: none;
+}
+#t-b {
+    grid-area: b;
+    border-top: none;
+    border-left: 5px solid rgb(30, 71, 23);
+    border-right: 5px solid rgb(30, 71, 23);
+    border-bottom: 5px solid rgb(30, 71, 23);
+}
+
+#t-c {
+    grid-area: c;
+    border-radius: 0 10% 0 0;
+    border-right: none;
+}
+#t-d {
+    grid-area: d;
+    font-weight: 700;
+    border: 5px solid rgb(30, 71, 23);
+    border-top: none;
+}
+
+.scoreboardScorerFields {
+    padding-right: 10px;
+    border-top: none;
+    font-size: smaller;
+    line-height: 1.2rem;
+    border-bottom: none;
+}
+#t-e {
+    grid-area: e;
+    text-align: right;
+    border-left: none;
+}
+#t-f {
+    grid-area: f;
+    font-size: smaller;
+    line-height: 1.2rem;
+    border: none;
+    border-left: 5px solid rgb(30, 71, 23);
+    border-right: 5px solid rgb(30, 71, 23);
+}
+#t-g {
+    grid-area: g;
+    text-align: left;
+    border-right: none;
+}

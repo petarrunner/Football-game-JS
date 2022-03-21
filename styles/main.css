@@ -1,0 +1,44 @@
+body {
+    background-image: url('/teamsStadium/img_open.jpg');
+    background-size: cover;
+    font-size: large;
+    opacity: 0.8;
+}
+
+.main-div {
+    display: flex;
+}
+.main-div-firstHalf {
+    width: 1500px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.line-ups {
+    width: 40%;
+    min-width: 350px;
+}
+
+.containerTogether {
+    width: 50%;
+}
+
+.main-div-secondHalf {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: auto;
+    max-height: 99vh;
+}
+
+.visibilityToHidden {
+    visibility: hidden;
+}
+
+.visibleLineUps {
+    visibility: visible;
+}
+
+.displayToNone {
+    display: none;
+}
