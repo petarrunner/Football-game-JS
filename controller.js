@@ -5,11 +5,11 @@ import Defending from './actions/4__defending.js';
 import SetPieces from './actions/5__setPieces.js';
 import Corner from './actions/6__corner.js';
 import { field__clubName__home } from './fields.js';
-import AwayTeam from './view/AwayTeam.js';
-import HomeTeam from './view/HomeTeam.js';
-import Info from './view/Info.js';
-import ScoreboardCl from './view/ScoreboardView.js';
-import StadiumCl from './view/Stadium.js';
+import AwayTeam from './viewFields/AwayTeam.js';
+import HomeTeam from './viewFields/HomeTeam.js';
+import Info from './viewFields/Info.js';
+import ScoreboardCl from './viewFields/ScoreboardView.js';
+import StadiumCl from './viewFields/Stadium.js';
 
 export const info = new Info();
 export const stadium = new StadiumCl();
