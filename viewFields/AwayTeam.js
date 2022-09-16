@@ -6,6 +6,7 @@ export default class AwayTeam extends teamsView {
         super();
         this.parentEl = document.querySelector('#line-ups-away');
     }
+
     setNameAndIndex() {
         this.clubName = info.clubName__away;
         this.index = info.index__away;

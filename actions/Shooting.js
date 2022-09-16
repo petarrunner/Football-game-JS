@@ -1,4 +1,5 @@
 import { playersList, teamsList } from '../0__teamsBase.js';
+import { BONUS_HOME } from '../config.js';
 import { domacin, gost, info, semafor } from '../controller.js';
 import Actions from './Actions.js';
 
@@ -14,8 +15,7 @@ export default class Shooting extends Actions {
     team__GK;
     rating__ATT;
     rating__GK;
-    dice__ATT;
-    dice__GK;
+
     index__teamATT;
     index__teamGK;
 
@@ -41,37 +41,37 @@ export default class Shooting extends Actions {
             this.team__GK = gost;
             this.index__teamATT = domacin.index;
             this.index__teamGK = gost.index;
-            this.noATT = 2;
-            this.noGK = 1;
+            this.noATT = BONUS_HOME;
         }
         if (gost.activeLineUp.includes(this.activePlayer)) {
             this.team__ATT = gost;
             this.team__GK = domacin;
             this.index__teamATT = gost.index;
             this.index__teamGK = domacin.index;
-            this.noATT = 1;
-            this.noGK = 2;
+            this.noGK = BONUS_HOME;
         }
-
         this.index__activePlayer = teamsList[this.index__teamATT].playerName.indexOf(this.activePlayer);
     }
 
     calculateAttackerRating() {
         this.rating__ATT = playersList[this.index__teamATT][this.index__activePlayer].shooting;
         this.rating__GK = playersList[this.index__teamGK][0].ratingGk;
+        this.dice__ATT = this.getRandomNumber(10) + this.noATT;
+        this.dice__GK = this.getRandomNumber(10) + this.noGK;
 
-        this.dice__ATT = Math.floor(Math.random() * 9 + this.noATT);
-        this.dice__GK = Math.floor(Math.random() * 9 + this.noGK);
+        /*     console.log('* numATT ' + numAtt);
+        console.log('* noATT ' + this.noATT);
+        console.log('* diceAtt ' + this.dice__ATT);
+        console.log('* numGK ' + numGK);
+        console.log('* noGK ' + this.noGK);
+        console.log('* diceGK ' + this.dice__GK);
+ */
         this.result = this.rating__ATT + this.dice__ATT - this.rating__GK - this.dice__GK;
     }
 
     checkBox() {
-        if (this.checkBox__closeShot.checked == true) {
-            this.result++;
-        }
-        if (this.checkBox__openShot.checked == true) {
-            this.result++;
-        }
+        if (this.checkBox__closeShot.checked == true) this.result++;
+        if (this.checkBox__openShot.checked == true) this.result++;
     }
 
     checkResult() {

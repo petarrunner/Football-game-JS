@@ -9,6 +9,10 @@ export default class Actions {
     result;
     actionText;
     result = 0;
-    noATT = 2;
-    noGK = 1;
+    noATT = 0;
+    noGK = 0;
+
+    getRandomNumber(max) {
+        return Math.floor(Math.random() * max) + 1;
+    }
 }

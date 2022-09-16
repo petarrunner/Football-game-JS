@@ -1,7 +1,7 @@
 export const teamsList = [
-    // Bayern Munchen
+    // Bayern Munich
     {
-        clubName: 'FC Bayern Munchen',
+        clubName: 'FC Bayern Munich',
         logo: 'teamsLogo/FC-Bayern-Munich-HD-Logo - Copy.png',
         stadium: {
             city: 'Munchen',
@@ -172,7 +172,7 @@ export const teamsList = [
     },
 ];
 export const playersList = [
-    // Bayern Munchen
+    // Bayern Munich
     [
         {
             playerName: 'Noyer',

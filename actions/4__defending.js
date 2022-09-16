@@ -3,20 +3,19 @@ import { corner, domacin, gost, info, semafor, setPiece, shootingAway, shootingH
 import DriblingAndDefending from './DriblindAndDefending.js';
 
 export default class Defending extends DriblingAndDefending {
-    karton = 0;
-    textKarton = '';
-    text = '';
-    kartonZbir = 0;
     constructor() {
         super();
         this.parentEl = document.querySelector('#field-defending');
         this.selectPlayers = this.parentEl.querySelector('.activePlayer');
         this.actionText = this.parentEl.querySelector('.finalActionText');
     }
+    karton = 0;
+    textKarton = '';
+    text = '';
+    kartonZbir = 0;
     calculateRatings() {
-        ////////////////////////////////////
-        this.dice__ATT = Math.floor(Math.random() * 9 + this.noATT);
-        this.dice__GK = Math.floor(Math.random() * 9 + this.noGK);
+        this.dice__ATT = this.getRandomNumber(10) + this.noATT;
+        this.dice__GK = this.getRandomNumber(10) + this.noGK;
 
         this.rating__ATT = playersList[this.index__teamATT][this.index__activePlayer].defending;
         this.rating__GK = playersList[this.index__teamGK][this.index__secondTeamPlayer].dribling;
@@ -24,30 +23,17 @@ export default class Defending extends DriblingAndDefending {
         this.result = this.rating__ATT + this.dice__ATT - this.rating__GK - this.dice__GK;
     }
     checkbox() {
-        if (document.querySelector('#defence1') == true) {
-            this.result++;
-        }
-        if (document.querySelector('#defence2').checked === true) {
-            this.karton += 3;
-        }
-        if (document.querySelector('#defence3').checked === true) {
-            this.karton++;
-        }
+        if (document.querySelector('#defence1') == true) this.result++;
+        if (document.querySelector('#defence2').checked === true) this.karton += 3;
+        if (document.querySelector('#defence3').checked === true) this.karton++;
     }
     foulAndCard() {
         this.karton = 0;
-
         let kartonKockica = Math.floor(Math.random() * 5);
 
-        if (playersList[this.index__teamATT][this.index__activePlayer].position == 'defender') {
-            this.karton += 5;
-        }
-        if (playersList[this.index__teamATT][this.index__activePlayer].position == 'midfielder') {
-            this.karton += 2;
-        }
-        if (playersList[this.index__teamATT][this.index__activePlayer].position == 'forward') {
-            this.karton--;
-        }
+        if (playersList[this.index__teamATT][this.index__activePlayer].position == 'defender') this.karton += 5;
+        if (playersList[this.index__teamATT][this.index__activePlayer].position == 'midfielder') this.karton += 2;
+        if (playersList[this.index__teamATT][this.index__activePlayer].position == 'forward') this.karton--;
         this.checkbox();
         this.kartonZbir = this.karton + kartonKockica;
     }
@@ -59,7 +45,6 @@ export default class Defending extends DriblingAndDefending {
             let teamNew = domacin.activeLineUp;
             teamNew = teamNew.filter(p => p !== this.activePlayer);
             domacin.activeLineUp = teamNew;
-            // console.log(domacin.activeLineUp);
         }
         if (gost.activeLineUp.includes(this.activePlayer)) {
             let teamNew = gost.activeLineUp;
@@ -104,7 +89,6 @@ export default class Defending extends DriblingAndDefending {
                 this.textKarton = `! That's a yellow card`;
                 this.yellowCard();
                 semafor.writeCardSemafor(this.activePlayer, this.team__ATT, card);
-                console.log('zuti karton');
             } else if (this.kartonZbir > 1 && this.kartonZbir <= 10 && info.yellowCardList.includes(this.activePlayer)) {
                 card = 'secondYellow';
                 this.textKarton = `! That's his second yellow card and red card`;
@@ -124,8 +108,8 @@ export default class Defending extends DriblingAndDefending {
         console.log(`Action => Defending`);
         console.log(`${this.activePlayer} : ${this.rating__ATT} + ${this.dice__ATT} = ${this.rating__ATT + this.dice__ATT}`);
         console.log(`${this.secondTeamPlayer} : ${this.rating__GK} + ${this.dice__GK} = ${this.rating__GK + this.dice__GK}`);
-        console.log('Result: ', this.result, 'kartonZbir:', this.kartonZbir, '=>', this.text);
-        // console.log('Result: ', this.result, '=>', this.text);
+        console.log('Result: ', this.result, '=>', this.text);
+        if (!this.textKarton == '') console.log('KartonZbir:', this.kartonZbir);
         console.log('-----------------------------------');
     }
     firstAction() {

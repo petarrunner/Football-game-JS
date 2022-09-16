@@ -1,28 +1,21 @@
 import Actions from './Actions.js';
 import { domacin, gost } from '../controller.js';
 import { teamsList } from '../0__teamsBase.js';
+import { BONUS_HOME } from '../config.js';
 
+import { defending__homeTeam, defending__awayTeam, dribling__homeTeam, dribling__awayTeam } from '../fields.js';
 export default class DriblingAndDefending extends Actions {
-    secondTeamPlayer;
-    index__secondTeamPlayer;
-    secondPlayerSelected = false;
-
-    team__ATT = domacin;
-    team__GK = gost;
-
-    rating__ATT;
-    rating__GK;
-    result = 0;
-    dice__ATT;
-    dice__GK;
-    defending__homeTeam = document.querySelector('#defendingHomeTeam');
-    defending__awayTeam = document.querySelector('#defendingAwayTeam');
-    dribling__domacin = document.querySelector('#optgroup-driblingHome');
-    dribling__gost = document.querySelector('#optgroup-driblingAway');
-
     constructor() {
         super();
     }
+    secondTeamPlayer;
+    index__secondTeamPlayer;
+    secondPlayerSelected = false;
+    team__ATT = domacin;
+    team__GK = gost;
+    noATT = 0;
+    noGK = 0;
+
     setSecondPlayerSelected() {
         this.secondPlayerSelected = true;
     }
@@ -30,18 +23,18 @@ export default class DriblingAndDefending extends Actions {
         this.secondPlayerSelected = false;
     }
     getActivePlayers() {
-        this.defending__homeTeam.label = domacin.clubName;
-        this.dribling__domacin.label = domacin.clubName;
-        this.defending__awayTeam.label = gost.clubName;
-        this.dribling__gost.label = gost.clubName;
+        defending__homeTeam.label = domacin.clubName;
+        dribling__homeTeam.label = domacin.clubName;
+        defending__awayTeam.label = gost.clubName;
+        dribling__awayTeam.label = gost.clubName;
 
         for (let i = 1; i < domacin.activeLineUp.length; i++) {
-            this.defending__homeTeam.appendChild(document.createElement('option')).innerText = domacin.activeLineUp[i];
-            this.dribling__domacin.appendChild(document.createElement('option')).innerText = domacin.activeLineUp[i];
+            defending__homeTeam.appendChild(document.createElement('option')).innerText = domacin.activeLineUp[i];
+            dribling__homeTeam.appendChild(document.createElement('option')).innerText = domacin.activeLineUp[i];
         }
         for (let i = 1; i < gost.activeLineUp.length; i++) {
-            this.defending__awayTeam.appendChild(document.createElement('option')).innerText = gost.activeLineUp[i];
-            this.dribling__gost.appendChild(document.createElement('option')).innerText = gost.activeLineUp[i];
+            defending__awayTeam.appendChild(document.createElement('option')).innerText = gost.activeLineUp[i];
+            dribling__awayTeam.appendChild(document.createElement('option')).innerText = gost.activeLineUp[i];
         }
 
         document.querySelector('#field-dribling').getElementsByTagName('option')[
@@ -51,18 +44,6 @@ export default class DriblingAndDefending extends Actions {
 
     getIndexActivePlayer() {
         this.activePlayer = this.parentEl.querySelector('.activePlayer').value;
-
-        if (gost.activeLineUp.includes(this.activePlayer)) {
-            this.team__ATT = gost;
-            this.team__GK = domacin;
-            this.noATT = 1;
-            this.noGK = 2;
-        } else {
-            this.team__ATT = domacin;
-            this.team__GK = gost;
-            this.noATT = 2;
-            this.noGK = 1;
-        }
         this.index__teamATT = this.team__ATT.index;
         this.index__teamGK = this.team__GK.index;
         this.index__activePlayer = teamsList[this.index__teamATT].playerName.indexOf(this.activePlayer);
@@ -71,23 +52,20 @@ export default class DriblingAndDefending extends Actions {
     getSecondTeamPlayers() {
         this.clearDefenders();
 
-        if (gost.activeLineUp.includes(this.activePlayer)) {
-            for (let i = 1; i < domacin.activeLineUp.length; i++) {
-                this.team__ATT = gost;
-                this.team__GK = domacin;
-                this.noATT = 1;
-                this.noGK = 2;
-                this.parentEl.querySelector('.secondTeamPlayers').appendChild(document.createElement('option')).innerText = domacin.activeLineUp[i];
-            }
-        }
-
         if (domacin.activeLineUp.includes(this.activePlayer)) {
             for (let i = 1; i < gost.activeLineUp.length; i++) {
                 this.team__ATT = domacin;
                 this.team__GK = gost;
-                this.noATT = 2;
-                this.noGK = 1;
+                this.noATT = BONUS_HOME;
                 this.parentEl.querySelector('.secondTeamPlayers').appendChild(document.createElement('option')).innerText = gost.activeLineUp[i];
+            }
+        }
+        if (gost.activeLineUp.includes(this.activePlayer)) {
+            for (let i = 1; i < domacin.activeLineUp.length; i++) {
+                this.team__ATT = gost;
+                this.team__GK = domacin;
+                this.noGK = BONUS_HOME;
+                this.parentEl.querySelector('.secondTeamPlayers').appendChild(document.createElement('option')).innerText = domacin.activeLineUp[i];
             }
         }
     }
@@ -97,10 +75,10 @@ export default class DriblingAndDefending extends Actions {
         this.index__secondTeamPlayer = teamsList[this.index__teamGK].playerName.indexOf(this.secondTeamPlayer);
     }
     clearActivePlayers() {
-        let clear1 = this.defending__homeTeam.getElementsByTagName('option');
-        let clear2 = this.defending__awayTeam.getElementsByTagName('option');
-        let clear3 = this.dribling__domacin.getElementsByTagName('option');
-        let clear4 = this.dribling__gost.getElementsByTagName('option');
+        let clear1 = defending__homeTeam.getElementsByTagName('option');
+        let clear2 = defending__awayTeam.getElementsByTagName('option');
+        let clear3 = dribling__homeTeam.getElementsByTagName('option');
+        let clear4 = dribling__awayTeam.getElementsByTagName('option');
 
         while (clear1.length > 0) {
             clear1[clear1.length - 1].remove();

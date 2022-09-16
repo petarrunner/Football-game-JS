@@ -6,7 +6,6 @@ export default class Shooting__home extends Shooting {
         super();
         this.parentEl = document.querySelector('#field-shooting-home');
         this.selectPlayers = this.parentEl.querySelector('.activePlayer');
-
         this.checkBox__closeShot = this.parentEl.querySelector('#checkboxShooting1');
         this.checkBox__openShot = this.parentEl.querySelector('#checkboxShooting2');
         this.actionText = this.parentEl.querySelector('.finalActionText');

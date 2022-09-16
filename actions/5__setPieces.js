@@ -1,4 +1,5 @@
 import { playersList, teamsList } from '../0__teamsBase.js';
+import { BONUS_HOME } from '../config.js';
 import { domacin, gost, semafor } from '../controller.js';
 import DriblingAndDefending from './DriblindAndDefending.js';
 
@@ -42,16 +43,14 @@ export default class SetPieces extends DriblingAndDefending {
     }
     getIndexActivePlayer() {
         this.activePlayer = this.parentEl.querySelector('.activePlayer').value;
-        if (gost.activeLineUp.includes(this.activePlayer)) {
-            this.team__ATT = gost;
-            this.team__GK = domacin;
-            this.noATT = 1;
-            this.noGK = 2;
-        } else {
+        if (domacin.activeLineUp.includes(this.activePlayer)) {
             this.team__ATT = domacin;
             this.team__GK = gost;
-            this.noATT = 2;
-            this.noGK = 1;
+            this.noATT = BONUS_HOME;
+        } else {
+            this.team__ATT = gost;
+            this.team__GK = domacin;
+            this.noGK = BONUS_HOME;
         }
         this.index__teamATT = this.team__ATT.index;
         this.index__teamGK = this.team__GK.index;
@@ -68,23 +67,23 @@ export default class SetPieces extends DriblingAndDefending {
         }
     }
     checkBox() {
-        this.dice__ATT = Math.floor(Math.random() * 9 + 1);
-        this.dice__GK = Math.floor(Math.random() * 7 + 3);
-        if (document.querySelector('#setPiece1') == true) {
-            this.dice__ATT = Math.floor(Math.random() * 8 + 2);
-            this.dice__GK = Math.floor(Math.random() * 8 + 2);
+        this.dice__ATT = this.getRandomNumber(11) + this.noATT - 1;
+        this.dice__GK = this.getRandomNumber(8) + this.noGK + 2;
+        if (document.querySelector('#setPiece1').checked == true) {
+            this.dice__ATT = this.getRandomNumber(10) + this.noATT;
+            this.dice__GK = this.getRandomNumber(10) + this.noGK;
         }
     }
     /////// B  U  G //////////
     checkBoxPenalty() {
         if (document.querySelector('#setPiece2').checked == true) {
-            this.dice__ATT = Math.floor(Math.random() * 10 + 5);
-            this.dice__GK = Math.floor(Math.random() * 15 + 1);
-            this.rez1 =
-                Math.floor(
-                    playersList[this.index__teamATT][this.index__activePlayer].freekicks +
-                        (2 * playersList[this.index__teamATT][this.index__activePlayer].shooting) / 3
-                ) + this.dice__ATT;
+            this.dice__ATT = this.getRandomNumber(10) + this.noATT + 5;
+            this.dice__GK = this.getRandomNumber(15) + this.noGK + 1;
+            this.rez1 = Math.floor(
+                (playersList[this.index__teamATT][this.index__activePlayer].freekicks +
+                    2 * playersList[this.index__teamATT][this.index__activePlayer].shooting) /
+                    3
+            );
         }
     }
     calculateAttackerRating() {

@@ -3,8 +3,6 @@ import { semafor } from '../controller.js';
 import DriblingAndDefending from './DriblindAndDefending.js';
 
 export default class Dribling extends DriblingAndDefending {
-    text;
-
     constructor() {
         super();
         this.parentEl = document.querySelector('#field-dribling');
@@ -13,8 +11,8 @@ export default class Dribling extends DriblingAndDefending {
     }
 
     calculateRatings() {
-        this.dice__ATT = Math.floor(Math.random() * 9 + this.noATT);
-        this.dice__GK = Math.floor(Math.random() * 9 + this.noGK);
+        this.dice__ATT = this.getRandomNumber(10) + this.noATT;
+        this.dice__GK = this.getRandomNumber(10) + this.noGK;
 
         this.rating__ATT = playersList[this.index__teamATT][this.index__activePlayer].dribling;
         this.rating__GK = playersList[this.index__teamGK][this.index__secondTeamPlayer].defending;
